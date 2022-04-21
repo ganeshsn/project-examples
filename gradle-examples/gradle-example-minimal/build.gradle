@@ -16,12 +16,22 @@
 
 buildscript {
     repositories {
-        mavenCentral()
+       maven {
+          url "https://artifactory.visualdx.com/artifactory/jcenter"
+          credentials(HttpHeaderCredentials) {
+            name = "X-JFrog-Art-API"
+            value = "AKCp8mYUqtaqna4mEpdQUwDikz6wLgXDWW6D3wsgbXw1q7iyD56LUyw19zbLUDTCn2SViRVDA"
+          }
+          authentication {
+              header(HttpHeaderAuthentication)
+          }
+       }
     }
     dependencies {
         classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '4.+')
     }
 }
+
 
 allprojects {
     repositories {
